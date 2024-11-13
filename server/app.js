@@ -2,7 +2,18 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
+// Import the database connection
 const connectDB = require('./config/database');
+
+// Import all routes
+const authRouter = require('./routes/auth');
+const budgetRouter = require('./routes/budget');
+const transactionRouter = require('./routes/transaction');
+
+// Load all routes - app.use(path, router) connects a group of routes (the router) to a specific base path in your application.
+app.use('/auth', require('./routes/auth'));
+app.use('/budget', require('./routes/budget'));
+app.use('/transaction', require('./routes/transaction'));
 
 // Load environment variables from .env file
 require('dotenv').config();
@@ -14,6 +25,7 @@ app.use(express.json());
 // Middleware to allow cross-origin requests
 app.use(cors());
 
+//Test Route using GET request to check if server is running
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
