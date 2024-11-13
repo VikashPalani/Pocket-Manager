@@ -11,9 +11,9 @@ const budgetRouter = require('./routes/budget');
 const transactionRouter = require('./routes/transaction');
 
 // Load all routes - app.use(path, router) connects a group of routes (the router) to a specific base path in your application.
-app.use('/auth', require('./routes/auth'));
-app.use('/budget', require('./routes/budget'));
-app.use('/transaction', require('./routes/transaction'));
+app.use('/', require('./routes/auth'));
+app.use('/', require('./routes/budget'));
+app.use('/', require('./routes/transaction'));
 
 // Load environment variables from .env file
 require('dotenv').config();

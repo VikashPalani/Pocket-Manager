@@ -2,12 +2,20 @@ const express = require('express');
 const authRouter = express.Router();
 
 // ## authRouter
-// - POST /auth/signup
-// - POST /auth/login
-// - POST /auth/logout
+// - POST /signup
+// - POST /login
+// - POST /logout
 
-authRouter.get('/auth', (req, res) => {
-    res.send('Auth Route');
+authRouter.post('/signup', (req, res) => {
+    res.send('signup Route');
+});
+
+authRouter.post('/login', (req, res) => {
+    res.send('signup Route');
+});
+
+authRouter.post('/logout', (req, res) => {
+    res.send('signup Route');
 });
 
 module.exports = authRouter;

@@ -12,3 +12,5 @@
 8. Create new js files for routes in Routes Folder and list down the required APIs in apilist.md file
 9. Define all the routers in their respective files with a sample GET API for initial testing
 10. Import all the routes in app.js(entry point of the project)
+
+## 3rd Commit
