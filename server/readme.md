@@ -14,3 +14,7 @@
 10. Import all the routes in app.js(entry point of the project)
 
 ## 3rd Commit
+11. Define all the models (with their Schema and other validation constraints) and export them
+(We include Helper functions while defining Model if needed)
+12. Create a validation file under Utils folder and include signup validations
+13. Write all the Auth APIs (Signup, login and logut)

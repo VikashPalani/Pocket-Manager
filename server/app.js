@@ -1,6 +1,26 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const session = require('express-session');
+
+// Load environment variables from .env file
+require('dotenv').config();
+const PORT = process.env.PORT;
+const SECRET_KEY = process.env.SECRET_KEY;
+
+//Session Middleware to store session's user data
+app.use(session({
+    secret: SECRET_KEY,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+}));
+
+// Middleware to parse incoming requests with JSON payloads
+app.use(express.json());
+
+// Middleware to allow cross-origin requests
+app.use(cors());
 
 // Import the database connection
 const connectDB = require('./config/database');
@@ -11,19 +31,9 @@ const budgetRouter = require('./routes/budget');
 const transactionRouter = require('./routes/transaction');
 
 // Load all routes - app.use(path, router) connects a group of routes (the router) to a specific base path in your application.
-app.use('/', require('./routes/auth'));
-app.use('/', require('./routes/budget'));
-app.use('/', require('./routes/transaction'));
-
-// Load environment variables from .env file
-require('dotenv').config();
-const PORT = process.env.PORT;
-
-// Middleware to parse incoming requests with JSON payloads
-app.use(express.json());
-
-// Middleware to allow cross-origin requests
-app.use(cors());
+app.use('/', authRouter);
+app.use('/', budgetRouter);
+app.use('/', transactionRouter);
 
 //Test Route using GET request to check if server is running
 app.get('/', (req, res) => {
